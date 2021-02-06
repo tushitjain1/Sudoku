@@ -1,9 +1,10 @@
+####saved
 #Sudoku open source program for CAS
 from graphics import *
 from graphicboardforsudoku import *
 from sudokulogic import s
 class game:
-    def __init__ (self,initial_window,main_menu_window,buttons,inside):
+    def __init__ (self,initial_window,main_menu_window,buttons,inside,playing):
         self.initial_window = initial_window
         self.main_menu_window = main_menu_window
         self.buttons = buttons
@@ -13,77 +14,64 @@ class game:
     def initial_window(x):
         window = GraphWin("Sudoku" ,width = 540, height = 540) ## WARNING: width  = 600
         winn = GraphWin("Sudoku" ,width = 300, height = 270)
-        board = s
+        winnie = GraphWin("Numbers" ,width = 360, height = 150)
         if x == 1:
-            backgound = color_rgb(0,128,128)
+            background = color_rgb(0,128,128)
             liness = color_rgb(225,174,1)
             z = color_rgb(225,174,1)
-            winn.setBackground(color_rgb(225,174,1))
-            other = color_rgb(0,128,128)
         elif x == 2:
-            backgound = color_rgb(0,0,0)
+            background = color_rgb(0,0,0)
             liness = color_rgb(224,255,255)
             z = color_rgb(224,255,255)
-            winn.setBackground(color_rgb(224,255,255))
-            other = color_rgb(0,0,0)
         elif x == 3:
-            backgound = color_rgb(0,0,0)
+            background = color_rgb(0,0,0)
             liness = color_rgb(192,192,192)
             z = color_rgb(192,192,192)
-            winn.setBackground(color_rgb(192,192,192))
-            other = color_rgb(0,0,0)
         elif x == 4:
-            backgound = color_rgb(0,0,0)
+            background = color_rgb(0,0,0)
             liness = color_rgb(255,7,58)
             z = color_rgb(255,7,58)
-            winn.setBackground(color_rgb(255,7,58))
-            other = color_rgb(0,0,0)
         elif x == 5:
-            backgound = color_rgb(0,128,128)
+            background = color_rgb(0,128,128)
             liness = color_rgb(135,206,250)
             z = color_rgb(135,206,250)
-            winn.setBackground(color_rgb(135,206,250))
-        window.setBackground(backgound)
+        window.setBackground(background)
+        winn.setBackground(z)
+        winnie.setBackground(z)
         for i in lines():
             i.setFill(liness)
             i.draw(window)
         check = Rectangle(Point(50, 10), Point(250, 80))
         check.setWidth(5)
-        check.setOutline(other)
+        check.setOutline(background)
         txt1 = Text(Point(150,45),"Check Baord")
         txt1.setSize(20)
-        txt1.setTextColor(other)
+        txt1.setTextColor(background)
         play_again = Rectangle(Point(50, 100), Point(250, 170))
         play_again.setWidth(5)
-        play_again.setOutline(other)
+        play_again.setOutline(background)
         txt2 =Text(Point(150,135),"Play Again")
         txt2.setSize(20)
-        txt2.setTextColor(other)
+        txt2.setTextColor(background)
         quit = Rectangle(Point(50, 190), Point(250, 260))
         quit.setWidth(5)
-        quit.setOutline(other)
+        quit.setOutline(background)
         txt3 =Text(Point(150,225),"Quit")
         txt3.setSize(20)
-        txt3.setTextColor(other)
+        txt3.setTextColor(background)
         check.draw(winn)
         play_again.draw(winn)
         quit.draw(winn)
         txt1.draw(winn)
         txt2.draw(winn)
         txt3.draw(winn)
-############################################################################################################
+
+        board = s
         yy = 30
-        list_of_input_boxes = []
-        for i in s:
+        for i in board:
             xx = 30
             for p in i:
                 if p == 0:
-                    input_box = Entry(Point(xx,yy),1)
-                    input_box.setSize(25)
-                    input_box.setFill(backgound)
-                    input_box.setTextColor(z)
-                    list_of_input_boxes.append(input_box.getAnchor())
-                    input_box.draw(window)
                     pass
                 else:
                     txt = Text(Point(xx,yy),p)
@@ -93,31 +81,139 @@ class game:
                 xx += 60
             yy += 60
 
+        numtxts1 = Text(Point(20,45),"1")
+        numtxts2 = Text(Point(60,45),"2")
+        numtxts3 = Text(Point(100,45),"3")
+        numtxts4 = Text(Point(140,45),"4")
+        numtxts5 = Text(Point(180,45),"5")
+        numtxts6 = Text(Point(220,45),"6")
+        numtxts7 = Text(Point(260,45),"7")
+        numtxts8 = Text(Point(300,45),"8")
+        numtxts9 = Text(Point(340,45),"9")
+        clearb = Text(Point(70,115),"Clear space")
+        clearb.setTextColor(background)
+        clearb.setSize(15)
+        clearb.draw(winnie)
+        tepeot = Rectangle(Point(5,90),Point(130,145))
+        tepeot.setWidth(3)
+        tepeot.setOutline(background)
+        tepeot.draw(winnie)
+        pencil = Text(Point(280,115),"Pencil mark")
+        pencil.setTextColor(background)
+        pencil.setSize(15)
+        pencil.draw(winnie)
+        ppppppp = Rectangle(Point(215,90),Point(340,145))
+        ppppppp.setWidth(3)
+        ppppppp.setOutline(background)
+        ppppppp.draw(winnie)
+        topx = 5
+        col1 = [5]
+        bottomx = 35
+        col2 = [35]
+        kras = [numtxts1,numtxts2,numtxts3,numtxts4,numtxts5,numtxts6,numtxts7,numtxts8,numtxts9]
+        for ix in range(0,9):
+            rectt = Rectangle(Point(topx,20),Point(bottomx,70))
+            todraw = kras[ix]
+            todraw.setSize(30)
+            todraw.setTextColor(background)
+            todraw.draw(winnie)
+            rectt.setOutline(background)
+            rectt.draw(winnie)
+            topx += 40
+            col1.append(topx)
+            bottomx += 40
+            col2.append(bottomx)
+
         while True:
+            clickpoint = window.checkMouse()
             clickity = winn.checkMouse()
+            clip = winnie.checkMouse()
+            if clip != None:
+                xifx = 0
+                for jjj in range(1,10):
+                    xgames = 25
+                    if game.inside(clip,Rectangle(Point(col1[xifx],20),Point(col2[xifx],70))):
+                        num = xifx + 1
+                        break
+                    xifx += 1
+                    if game.inside(clip,Rectangle(Point(5,90),Point(130,145))):
+                        num = 0
+                    if game.inside(clip,Rectangle(Point(215,90),Point(340,145))):
+                        xgames = 20
+            if clickpoint != None:
+                y = 0
+                row = [0]
+                col = [0]
+                x = 1
+                count = 0
+                for i in range (1,10):
+                    row.append(60*x)
+                    col.append(60*x)
+                    x +=1
+                for ii in range(1,10):
+                    x = 0
+                    for jj in range(1,10):
+                        if game.inside(clickpoint,Rectangle(Point(col[x],row[y]),Point(col[x+1],row[y+1]))):
+                            cover = Circle(Point(col[x+1]-30,row[y+1]-30),15)
+                            cover.setFill(background)
+                            cover.setOutline(background)
+                            cover.draw(window)
+                            if num != 0:
+                                tct = Text(Point(col[x+1]-30,row[y+1]-30),str(num))
+                                tct.setTextColor(color_rgb(0,255,0))
+                                tct.setSize(xgames)
+                                tct.draw(window)
+                            board[y][x] = num
+                        x += 1
+                    y+=1
+            x += 1
             if clickity != None:
                 if game.inside(clickity,Rectangle(Point(50, 10), Point(250, 80))):
-                    print("ha")
-                    break
+                    endofg = 1
+                    for i in range(0,9):
+                        for y in range(0,9):
+                            if board[i][y]==0:
+                                endofg = 0
+                    for i in range(9):
+                        row = {}
+                        column = {}
+                        block = {}
+                        row_cube = 3 * (i//3)
+                        column_cube = 3 * (i%3)
+                        for j in range(9):
+                            if board[i][j]!= 0 and board[i][j] in row:
+                                endofg = 0
+                            row[board[i][j]] = 1
+                            if board[j][i]!= 0 and board[j][i] in column:
+                                endofg = 0
+                            column[board[j][i]] = 1
+                            rc= row_cube+j//3
+                            cc = column_cube + j%3
+                            if board[rc][cc] in block and board[rc][cc]!= 0:
+                                endofg = 0
+                            block[board[rc][cc]]=1
+
+                    cov = Circle(Point(280,45),10)
+                    if endofg == 0:
+                        cov.setFill("blue")
+                        cov.setOutline("blue")
+                        cov.draw(winn)
+                    elif endofg == 1:
+                        cov.setFill("green")
+                        cov.setOutline("green")
+                        cov.draw(winn)
                 elif game.inside(clickity,Rectangle(Point(50, 100), Point(250, 170))):
                     winn.close()
                     window.close()
+                    winnie.close()
                     game.main_menu_window()
                     break
                 elif game.inside(clickity,Rectangle(Point(50, 190), Point(250, 260))):
                     window.close()
                     winn.close()
+                    winnie.close()
                     break
                 clickpoint = window.checkMouse()
-            # for i in list_of_input_boxes:
-            #     co_ord = Entry(list_of_input_boxes[i])
-            #     for x in board:
-            #         for j in x:
-            #             if j == 0:
-            #                 board[x][j] = int(co_ord.getText())
-
-                ##############################################################################################
-
 
     def main_menu_window():
         win = GraphWin("Sudoku" ,width = 930, height = 600)
@@ -142,7 +238,9 @@ class game:
 
         Click on the corresponding buttons to
         select a board theme pellete and start
-        the game. When finished, check board. """)
+        the game. When finished, check board. If
+        blue dot: something went wrong, if green
+        dot: good job! It's right.""")
         text.setTextColor(color_rgb(0,255,0))
         text.setSize(15)
         text.setFace("times roman")
@@ -245,4 +343,6 @@ class game:
         ur = rectangle.getP2()  # assume p2 is ur (upper right
         return ll.getX() < point.getX() < ur.getX() and ll.getY() < point.getY() < ur.getY()
 
+
 game.main_menu_window()
+
