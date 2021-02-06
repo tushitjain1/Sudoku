@@ -44,7 +44,7 @@ class game:
         check = Rectangle(Point(50, 10), Point(250, 80))
         check.setWidth(5)
         check.setOutline(background)
-        txt1 = Text(Point(150,45),"Check Baord")
+        txt1 = Text(Point(150,45),"Check Board")
         txt1.setSize(20)
         txt1.setTextColor(background)
         play_again = Rectangle(Point(50, 100), Point(250, 170))
